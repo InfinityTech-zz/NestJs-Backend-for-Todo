@@ -33,8 +33,14 @@ jobs:
 
       - name: Initialize Prisma
         run: npx prisma generate
+
+      # - name: Run
+      #   env:
+      #     DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
       - name: Connect Prisma  
         run: npx prisma db push  
+
 
       # - name: Lint
       #   run: npm run lint

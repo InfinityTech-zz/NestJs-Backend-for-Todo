@@ -25,7 +25,12 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Initialize Prisma
+        run: npx prisma generate
+      - name: Connect Prisma  
+        run: npx prisma db push  
 
       # - name: Lint
       #   run: npm run lint

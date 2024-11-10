@@ -41,6 +41,7 @@ jobs:
 
       - name: Deploy
         run: |
+         npm run build
          npm run start:prod
          zip -j deploy.zip ./dist/*
 

@@ -51,7 +51,9 @@ jobs:
          npm run build
 
       - name: Make Zip
-        run: zip -j deploy.zip ./dist/*
+        run:  |
+         zip -j deploy.zip ./dist/*
+         aws lambda update-function-code --function-name=nestjs-be --zip-file=fileb://deploy.zip
 
 
       # - name: Lint

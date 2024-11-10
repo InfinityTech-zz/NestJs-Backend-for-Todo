@@ -34,11 +34,9 @@ jobs:
       - name: Initialize Prisma
         run: npx prisma generate
 
-      # - name: Run
-      #   env:
-      #     DATABASE_URL: ${{ secrets.DATABASE_URL }}
-
-      - name: Connect Prisma  
+      - name: Connect Prisma 
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }} 
         run: npx prisma db push  
 
 

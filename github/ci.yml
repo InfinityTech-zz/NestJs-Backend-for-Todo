@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20]  # Adjust to match your project's Node version
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      # - name: Lint
+      #   run: npm run lint
+
+      # - name: Run tests
+      #   env:
+      #     CI: true  # Ensures Jest runs in CI mode
+      #   run: npm run test:ci  # Change to `npm run test` if you don’t have a dedicated CI script
+
+      # - name: Build project
+      #   run: npm run build
+
+      # # Optional: Upload artifacts (e.g., test results or build output) if needed
+      # - name: Upload Test Results
+      #   if: always()
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: test-results
+      #     path: coverage  # Or the path to your test output

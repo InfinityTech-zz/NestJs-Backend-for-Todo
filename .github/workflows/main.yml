@@ -53,7 +53,7 @@ jobs:
       - name: Make Zip
         run:  |
          npm run build
-         zip -j deploy.zip ./dist/*
+         zip -r deploy.zip ./dist/*
          aws lambda update-function-code --function-name=nestjs-be --zip-file=fileb://deploy.zip
 
 

@@ -46,12 +46,13 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }} 
         run: npx prisma db push  
 
-      - name: Deploy
-        run: |
-         npm run build
+      # - name: Deploy
+      #   run: |
+      #    npm run build
 
       - name: Make Zip
         run:  |
+         npm run build
          zip -j deploy.zip ./dist/*
          aws lambda update-function-code --function-name=nestjs-be --zip-file=fileb://deploy.zip
 

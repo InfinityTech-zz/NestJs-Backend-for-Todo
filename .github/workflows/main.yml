@@ -39,6 +39,11 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }} 
         run: npx prisma db push  
 
+      - name: Deploy
+        run: |
+         npm run start:prod
+         zip -j deploy.zip ./dist/*
+
 
       # - name: Lint
       #   run: npm run lint

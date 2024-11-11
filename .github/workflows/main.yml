@@ -55,7 +55,7 @@ jobs:
       - name: Make Zip
         run: |
          npm run build
-         zip -r deploy.zip ./dist
+         zip -r deploy.zip . -i ./dist
         working-directory: apps/${{ matrix.service }}
 
 

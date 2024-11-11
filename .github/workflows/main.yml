@@ -54,8 +54,8 @@ jobs:
 
       - name: Make Zip
         run: |
-         npm run build
-         zip -r deploy.zip . -i ./dist
+         npm run build new-app-gateway
+         zip -r deploy.zip ./dist/* 
          aws lambda update-function-code --function-name=nestjs-be --zip-file=fileb://deploy.zip
         working-directory: apps/${{ matrix.service }}
 

@@ -14,6 +14,8 @@ jobs:
     strategy:
       matrix:
         node-version: [20]  # Adjust to match your project's Node version
+        service:
+          - new-app-gateway
 
     steps:
       - name: Checkout code
@@ -51,10 +53,15 @@ jobs:
       #    npm run build
 
       - name: Make Zip
-        run:  |
-         npm run build
-         zip -r deploy.zip ./dist/*
-         aws lambda update-function-code --function-name=nestjs-be --zip-file=fileb://deploy.zip
+        run: npm run build
+        working-directory: apps/${{ matrix.service }}
+
+
+      - name: Zip the build folder
+        run: zip -r deploy.zip ./dist
+        working-directory: apps/${{ matrix.service }}
+        #  zip -r deploy.zip ./dist/*
+        #  aws lambda update-function-code --function-name=nestjs-be --zip-file=fileb://deploy.zip
 
 
       # - name: Lint
